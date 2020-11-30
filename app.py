@@ -117,9 +117,6 @@ def calculate_smape(df_, regressor, forecast_horizon, window_length):
 
 
 
-#df=pd.read_csv(r'C:\Users\uy308417\OneDrive - GSK\Desktop\Python Projects\my-notebook\3.2. Sktime\AUG1GUAETRADE.csv')
-
-
 st.subheader('Forecasting Sales with Machine Learning')
 st.markdown(" Use different Machine Learning Algortihms to generate time series forecasting for your product.  \n"
         "Forecast Length: How many future months you want to generate forecast  \n"
@@ -149,7 +146,7 @@ st.line_chart(df_forecast, use_container_width = False, width = 800)
 if uploaded_file is not None:
     uploaded_file.seek(0)
 
-csv = data.to_csv(index=False)
+csv = df_forecast.to_csv(index=False)
 b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
 href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
 st.markdown(href, unsafe_allow_html=True)
