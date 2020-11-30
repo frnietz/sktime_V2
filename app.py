@@ -21,6 +21,8 @@ import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
 import six
+import os
+import base64
 import sys
 sys.modules['sklearn.externals.six'] = six
 #from sktime.forecasting.all import plot_ys
@@ -147,3 +149,7 @@ st.line_chart(df_forecast, use_container_width = False, width = 800)
 if uploaded_file is not None:
     uploaded_file.seek(0)
 
+csv = data.to_csv(index=False)
+b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+href = f'<a href="data:file/csv;base64,{b64}">Download CSV File</a> (right-click and save as &lt;some_name&gt;.csv)'
+st.markdown(href, unsafe_allow_html=True)
